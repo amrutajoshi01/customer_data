@@ -1,0 +1,29 @@
+#register{
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    width: 30%;
+    text-align: center;
+}
+
+.FormFields{
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.label{
+    margin-bottom: 0px;
+}
+
+.submit{
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+    margin-top:10px;
+}

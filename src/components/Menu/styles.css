@@ -1,0 +1,7 @@
+.menu{
+    text-align: left;
+}
+.menuItem{
+    display: inline;
+    padding-right: 10px;
+}
