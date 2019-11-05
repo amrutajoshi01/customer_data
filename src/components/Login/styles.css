@@ -1,26 +1,31 @@
-#register{
-    width: fit-content;
-    height: fit-content;
-    margin: auto;
+.loginForm{
+    text-align: left;
     width: 30%;
+    margin: auto;
     text-align: center;
 }
 
-#register .FormFields{
+.loginForm .FormFields{
+    width: 80%;
+    margin:auto;
     display: inline-block;
     text-align: left;
-    width: 100%;
     margin-bottom: 10px;
     font-size: 16px;
     padding: 5px;
     box-sizing: border-box;
 }
 
+h3.error{
+    color: red;
+    font-weight: 400;
+}
+
 .label{
     margin-bottom: 0px;
 }
 
-#register .submit{
+.loginForm .submit{
     text-align: center;
     font-size: 16px;
     padding: 5px;
