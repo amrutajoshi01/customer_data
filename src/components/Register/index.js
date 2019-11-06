@@ -85,21 +85,22 @@ class Register extends Component {
         }
 
         this.setState({ error: error });
-        console.log(formIsValid)
         return formIsValid;
     }
 
-    register = () => {
+    register = (event) => {
+        event.preventDefault();
         let { name, email, password } = this.state;
         if (this.handleValidation()) {
             const data = {
-                name: name,
+                // name: name,
                 email: email,
                 password: password
             }
             this.props.register(data);
             this.props.history.push("/upload");
         }
+        console.log()
     }
 
     render() {
@@ -132,7 +133,7 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.register.loading
+        loading: state.register.loading,
     }
 }
 

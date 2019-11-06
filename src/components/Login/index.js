@@ -8,7 +8,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
             error: ''
         };
@@ -19,9 +19,10 @@ class Login extends Component {
     }
 
     handleSubmit = (evt) => {
-        let { username, password } = this.state;
         evt.preventDefault();
-        if (!username) {
+        let { email, password } = this.state;
+        evt.preventDefault();
+        if (!email) {
             return this.setState({ error: 'Username is required' });
         }
         if (!password) {
@@ -29,10 +30,11 @@ class Login extends Component {
         }
 
         let data = {
-            username: username,
+            email: email,
             password: password
         }
         this.props.login(data);
+
         if (this.props.success) {
             this.props.history.push('/upload');
         }
@@ -48,8 +50,9 @@ class Login extends Component {
     }
 
     render() {
+        let { email, password } = this.state;
         return (
-            <form className="loginForm" onSubmit={this.handleSubmit}>
+            <form className="loginForm" onSubmit={this.handleSubmit} action="/upload">
                 <h2>Login</h2>
                 {
                     this.state.error &&
@@ -58,12 +61,12 @@ class Login extends Component {
                         {this.state.error}
                     </h3>
                 }
-                <label className="FormFields label">Username</label>
-                <input type="text" className="FormFields" name="username" value={this.state.username}
+                <label className="FormFields label">Email</label>
+                <input type="email" className="FormFields" name="email" value={email}
                     onChange={(event) => this.handleChange(event)} /><br />
 
                 <label className="FormFields label">Password</label>
-                <input type="password" className="FormFields" name="password" value={this.state.password}
+                <input type="password" className="FormFields" name="password" value={password}
                     onChange={(event) => this.handleChange(event)} /><br />
                 <input type="submit" className="FormFields submit" value="Login" />
             </form>

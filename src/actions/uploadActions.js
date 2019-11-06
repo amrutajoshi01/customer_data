@@ -17,10 +17,9 @@ export const uploadPending = () => {
     }
 }
 
-export const uploadSuccess = (data) => {
+export const uploadSuccess = () => {
     return {
         type: UPLOAD_SUCCESS,
-        payload: { data }
     }
 }
 
