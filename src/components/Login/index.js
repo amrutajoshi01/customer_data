@@ -10,7 +10,7 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            error: ''
+            error: '',
         };
     }
 
@@ -34,13 +34,9 @@ class Login extends Component {
             password: password
         }
         this.props.login(data);
+        // this.props.history.push('/customers');
+        //return this.setState({ error: 'Invalid Username/Password' });
 
-        if (this.props.success) {
-            this.props.history.push('/upload');
-        }
-        else {
-            return this.setState({ error: 'Invalid Username/Password' });
-        }
     }
 
     handleChange = (evt) => {

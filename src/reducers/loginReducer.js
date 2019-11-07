@@ -4,7 +4,6 @@ const initState = {
     loading: false,
     username: '',
     password: '',
-    success: false,
     error: ''
 }
 
@@ -24,6 +23,7 @@ const loginReducer = (state = initState, action) => {
             }
 
         case LOGIN_SUCCESS:
+        // localStorage.setItem('user', action.token);
             return {
                 ...state,
                 success: true,
@@ -34,6 +34,7 @@ const loginReducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
+                success: false,
                 error: action.error
             }
 

@@ -16,9 +16,10 @@ export const loginPending = () => {
     }
 }
 
-export const loginSuccess = () => {
+export const loginSuccess = (token) => {
     return {
         type: LOGIN_SUCCESS,
+        token
     }
 }
 

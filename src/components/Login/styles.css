@@ -1,13 +1,13 @@
-.loginForm{
+.loginForm {
     text-align: left;
     width: 30%;
     margin: auto;
     text-align: center;
 }
 
-.loginForm .FormFields{
+.loginForm .FormFields {
     width: 80%;
-    margin:auto;
+    margin: auto;
     display: inline-block;
     text-align: left;
     margin-bottom: 10px;
@@ -16,19 +16,19 @@
     box-sizing: border-box;
 }
 
-h3.error{
+h3.error {
     color: red;
     font-weight: 400;
 }
 
-.label{
+.label {
     margin-bottom: 0px;
 }
 
-.loginForm .submit{
+.loginForm .submit {
     text-align: center;
     font-size: 16px;
     padding: 10px;
-    margin-top:10px;
+    margin-top: 10px;
     position: relative;
 }

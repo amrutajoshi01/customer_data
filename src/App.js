@@ -5,6 +5,7 @@ import Register from './components/Register';
 import Upload from './components/Upload';
 import Menu from './components/Menu';
 import Login from './components/Login';
+import Customers from './components/Customers';
 function App() {
   return (
     <div className="App">
@@ -18,7 +19,10 @@ function App() {
             <Upload />
           </Route>
           <Route exact path="/login">
-            <Login/>
+            <Login />
+          </Route>
+          <Route exact path="/customers">
+            <Customers />
           </Route>
         </Switch>
       </Router>

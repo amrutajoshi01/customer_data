@@ -1,0 +1,16 @@
+.customersData {
+    text-align: center;
+    display: table;
+}
+
+.customer {
+    text-align: left;
+    width: 30%;
+    display: table-row;
+}
+
+.customerDetails {
+    font-size: 16px;
+    display: table-cell;
+    padding: 10px;
+}

@@ -9,6 +9,7 @@ class Menu extends Component {
         return (
             <nav className="menu">
                 <ul>
+                    <li className="menuItem"><Link to="/login">Login</Link></li>
                     <li className="menuItem"><Link to="/register">Register</Link></li>
                     <li className="menuItem"><Link to="/upload">Upload</Link></li>
                 </ul>

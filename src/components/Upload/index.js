@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { uploadRequest } from "../../actions/uploadActions";
+import { uploadRequest } from "../../actions/customerActions";
 import './styles.css'
 class Upload extends Component {
     constructor(props) {
@@ -36,8 +36,8 @@ class Upload extends Component {
         }
         else if (target.id === "data") {
             let data = {
+                email: target.email.value,
                 name: target.name.value,
-                email: target.email.value
             }
             this.props.upload(data);
         }
@@ -73,7 +73,7 @@ class Upload extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.upload.loading,
+        loading: state.customer.loading,
     }
 }
 

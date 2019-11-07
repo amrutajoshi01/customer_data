@@ -13,7 +13,10 @@ export function* login(action) {
                 'Content-Type': 'application/json',
             }
         });
-        yield put({ type: LOGIN_SUCCESS })
+        let tokenObj = yield response.json();
+        if (response.status === 200)
+            yield put({ type: LOGIN_SUCCESS, token: tokenObj.token })
+        this.props.history.push('/customers');
     }
     catch (error) {
         yield put({ type: LOGIN_FAILURE, error })
