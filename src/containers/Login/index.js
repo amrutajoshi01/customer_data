@@ -33,8 +33,9 @@ class Login extends Component {
             email: email,
             password: password
         }
+        
         this.props.login(data);
-        // this.props.history.push('/customers');
+        this.props.history.push('/customers');
         //return this.setState({ error: 'Invalid Username/Password' });
 
     }

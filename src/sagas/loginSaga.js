@@ -14,9 +14,10 @@ export function* login(action) {
             }
         });
         let tokenObj = yield response.json();
-        if (response.status === 200)
+        if (response.status === 200) {
+            localStorage.setItem('user', tokenObj.token);
             yield put({ type: LOGIN_SUCCESS, token: tokenObj.token })
-        this.props.history.push('/customers');
+        }
     }
     catch (error) {
         yield put({ type: LOGIN_FAILURE, error })

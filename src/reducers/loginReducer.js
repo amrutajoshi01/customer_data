@@ -23,7 +23,6 @@ const loginReducer = (state = initState, action) => {
             }
 
         case LOGIN_SUCCESS:
-        // localStorage.setItem('user', action.token);
             return {
                 ...state,
                 success: true,
