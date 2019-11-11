@@ -11,14 +11,15 @@ class Login extends Component {
             email: '',
             password: '',
             error: '',
+            message: ''
         };
     }
-
     dismissError = () => {
         this.setState({ error: '' });
     }
 
     handleSubmit = (evt) => {
+        console.log('submit')
         evt.preventDefault();
         let { email, password } = this.state;
         evt.preventDefault();
@@ -33,11 +34,19 @@ class Login extends Component {
             email: email,
             password: password
         }
-        
         this.props.login(data);
-        this.props.history.push('/customers');
-        //return this.setState({ error: 'Invalid Username/Password' });
+    }
 
+    static getDerivedStateFromProps(nextProps) {
+        if (!nextProps.loading) {
+            if (nextProps.success === true) {
+                nextProps.history.push('/customers');
+            }
+            else {
+                return { message: nextProps.error, }
+            }
+        }
+        return null;
     }
 
     handleChange = (evt) => {
@@ -47,26 +56,24 @@ class Login extends Component {
     }
 
     render() {
-        let { email, password } = this.state;
+        let { email, password, error, message } = this.state;
         return (
-            <form className="loginForm" onSubmit={this.handleSubmit} action="/upload">
+            <div className="loginForm">
                 <h2>Login</h2>
                 {
-                    this.state.error &&
                     <h3 className='error' onClick={this.dismissError}>
-                        <button onClick={this.dismissError}>✖</button>
-                        {this.state.error}
+                        {error && <button onClick={this.dismissError}>✖</button>}
+                        {error}{message}
                     </h3>
                 }
                 <label className="FormFields label">Email</label>
                 <input type="email" className="FormFields" name="email" value={email}
                     onChange={(event) => this.handleChange(event)} /><br />
-
                 <label className="FormFields label">Password</label>
                 <input type="password" className="FormFields" name="password" value={password}
                     onChange={(event) => this.handleChange(event)} /><br />
-                <input type="submit" className="FormFields submit" value="Login" />
-            </form>
+                <input type="submit" className="FormFields submit" value="Login" onClick={this.handleSubmit} />
+            </div>
         );
     }
 }
@@ -74,7 +81,8 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     return {
         loading: state.login.loading,
-        success: state.login.success
+        success: state.login.success,
+        error: state.login.error
     }
 }
 

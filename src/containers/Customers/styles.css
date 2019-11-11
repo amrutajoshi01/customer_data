@@ -1,16 +1,23 @@
 .customersData {
+    border-collapse: collapse;
     text-align: center;
     display: table;
 }
 
 .customer {
     text-align: left;
-    width: 30%;
     display: table-row;
+    padding: 10px;
 }
 
 .customerDetails {
+    width: 10%;
     font-size: 16px;
     display: table-cell;
     padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.customer:nth-child(odd) {
+    background-color: #f2f2f2
 }

@@ -20,7 +20,7 @@ export function* login(action) {
         }
     }
     catch (error) {
-        yield put({ type: LOGIN_FAILURE, error })
+        yield put({ type: LOGIN_FAILURE, error:'Invalid Email/Password' })
     }
 }
 

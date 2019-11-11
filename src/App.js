@@ -9,7 +9,7 @@ import Customers from './containers/Customers';
 function App() {
   return (
     <div className="App">
-      {/* <Router> */}
+      <Router>
         <header className="App-header"><Menu /></header>
         <Switch>
           <Route exact path="/register">
@@ -25,7 +25,7 @@ function App() {
             <Customers />
           </Route>
         </Switch>
-      {/* </Router> */}
+      </Router>
     </div>
   );
 }

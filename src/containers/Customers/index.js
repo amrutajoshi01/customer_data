@@ -15,15 +15,15 @@ class Customers extends Component {
             <div id="customersData">
                 <div className="customer">
                     <p className="customerDetails">Customer Id</p>
-                    <p className="customerDetails">Email</p>
                     <p className="customerDetails">Name</p>
+                    <p className="customerDetails">Email</p>
                 </div>
                 {
                     customers.map(customer => (
                         <div className="customer" key={customer.id}>
                             <p className="customerDetails">{customer.id}</p>
-                            <p className="customerDetails">{customer.email}</p>
                             <p className="customerDetails">{customer.name}</p>
+                            <p className="customerDetails">{customer.email}</p>
                         </div>
                     ))
                 }

@@ -13,20 +13,23 @@ const loginReducer = (state = initState, action) => {
         case LOGIN_REQUEST:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                error: ''
             }
 
         case LOGIN_PENDING:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                error: ''
             }
 
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 success: true,
-                loading: false
+                loading: false,
+                error: ''
             }
 
         case LOGIN_FAILURE:

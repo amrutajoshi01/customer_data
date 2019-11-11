@@ -8,7 +8,7 @@ class Upload extends Component {
         this.state = {
             name: '',
             email: '',
-            toggleUpload: 'EnterDetails'
+            toggleUploadTab: 'EnterDetails'
         }
     }
 
@@ -23,7 +23,7 @@ class Upload extends Component {
     toggleMenu = (event) => {
         let name = event.target.name;
         this.setState({
-            toggleUpload: name
+            toggleUploadTab: name
         });
     }
 
@@ -44,9 +44,9 @@ class Upload extends Component {
     }
 
     render() {
-        let { name, email, toggleUpload } = this.state;
+        let { name, email, toggleUploadTab } = this.state;
         let displayForm;
-        if (toggleUpload === "EnterDetails")
+        if (toggleUploadTab === "EnterDetails")
             displayForm = <form id="data" className="uploadCustomersForm" onSubmit={this.handleSubmit}>
                 <label htmlFor="name" className="FormFields label">Name: </label>
                 <input type="text" id="name" className="FormFields" placeholder="Customer Name" name="name" value={name} onChange={this.handleChange} />

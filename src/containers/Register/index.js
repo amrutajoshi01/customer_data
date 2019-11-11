@@ -10,7 +10,7 @@ class Register extends Component {
             name: '',
             email: '',
             password: '',
-            confirm: '',
+            confirmPassword: '',
             error: {}
         }
     }
@@ -30,11 +30,11 @@ class Register extends Component {
 
         if (name === "confirm") {
             if (this.state.password !== value) {
-                error["confirm"] = "Password not matching";
+                error["confirmPassword"] = "Password not matching";
 
             }
             else
-                error["confirm"] = ''
+                error["confirmPassword"] = ''
         }
 
         this.setState({
@@ -46,7 +46,7 @@ class Register extends Component {
     handleValidation = () => {
         let error = {};
         let formIsValid = true;
-        let { name, password, confirm, email } = this.state;
+        let { name, password, confirmPassword, email } = this.state;
         if (!this.state.name) {
             formIsValid = false;
             error["name"] = "Name must not be empty";
@@ -66,9 +66,9 @@ class Register extends Component {
             formIsValid = false;
             error["password"] = "Password must be at least 8 characters";
         }
-        else if (password !== confirm) {
+        else if (password !== confirmPassword) {
             formIsValid = false;
-            error["confirm"] = "Password not matching";
+            error["confirmPassword"] = "Password not matching";
         }
 
         if (!email) {
@@ -121,9 +121,9 @@ class Register extends Component {
                     <input type="password" id="password" className="FormFields" placeholder="Enter Password" name="password" value={password} onChange={this.handleChange} />
                     <span style={{ color: "red" }}><br />{error["password"]}</span>
 
-                    <label htmlFor="confirm" className="FormFields label">Confirm Password</label>
-                    <input type="password" id="confirm" className="FormFields" placeholder="Confirm Password" name="confirm" value={confirm} onChange={this.handleChange} />
-                    <span style={{ color: "red" }}><br />{error["confirm"]}</span>
+                    <label htmlFor="confirmPassword" className="FormFields label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" className="FormFields" placeholder="Confirm Password" name="confirm" value={confirm} onChange={this.handleChange} />
+                    <span style={{ color: "red" }}><br />{error["confirmPassword"]}</span>
                     <button className="FormFields submit" onClick={this.register}>Register</button>
                 </div>
             </div>

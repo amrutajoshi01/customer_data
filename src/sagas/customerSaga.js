@@ -8,8 +8,6 @@ export function* upload(action) {
     const { data } = action.payload;
     let url = 'http://35.223.127.220:8080/customers';
     yield put({ type: UPLOAD_PENDING })
-    // const formData = new FormData();
-    // formData.append('customerDetails', data[0]);
 
     try {
         let userToken = localStorage.getItem('user');
