@@ -17,10 +17,15 @@ export function* register(action) {
                 'Content-Type': 'application/json',
             }
         });
-        yield put({ type: REGISTER_SUCCESS, data })
+        if (response.ok)
+            yield put({ type: REGISTER_SUCCESS, data })
+        else {
+            yield put({ type: REGISTER_FAILURE, error: 'Something went wrong...' })
+        }
+
     }
     catch (error) {
-        yield put({ type: REGISTER_FAILURE })
+        yield put({ type: REGISTER_FAILURE, error: 'Something went wrong...' })
     }
 
 }

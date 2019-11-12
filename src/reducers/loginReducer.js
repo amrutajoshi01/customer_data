@@ -4,6 +4,7 @@ const initState = {
     loading: false,
     username: '',
     password: '',
+    success: false,
     error: ''
 }
 

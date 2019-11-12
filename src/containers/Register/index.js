@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { registerRequest } from "../../actions/registerActions";
 import { withRouter } from 'react-router-dom';
+import Loader from '../../components/Loader';
+
 import "./styles.css"
+import Alert from '../../components/Alert';
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +31,7 @@ class Register extends Component {
                 error["password"] = ''
         }
 
-        if (name === "confirm") {
+        if (name === "confirmPassword") {
             if (this.state.password !== value) {
                 error["confirmPassword"] = "Password not matching";
 
@@ -47,7 +50,7 @@ class Register extends Component {
         let error = {};
         let formIsValid = true;
         let { name, password, confirmPassword, email } = this.state;
-        if (!this.state.name) {
+        if (!name) {
             formIsValid = false;
             error["name"] = "Name must not be empty";
         }
@@ -98,15 +101,28 @@ class Register extends Component {
                 password: password
             }
             this.props.register(data);
-            this.props.history.push("/upload");
         }
-        console.log()
+    }
+
+    static getDerivedStateFromProps(nextProps) {
+        if (!nextProps.loading) {
+            if (nextProps.success === true) {
+                nextProps.history.push('/login');
+            }
+            else {
+                return { message: nextProps.error, }
+            }
+        }
+        return null;
     }
 
     render() {
-        let { name, email, password, confirm, error } = this.state;
+        let { name, email, password, confirmPassword, error } = this.state;
+        const { loading } = this.props;
         return (
             <div >
+                {this.props.error && <Alert />}
+                {loading && <Loader />}
                 <h2>Register</h2>
                 <div id="register">
                     <label htmlFor="name" className="FormFields label">Full Name</label>
@@ -122,7 +138,7 @@ class Register extends Component {
                     <span style={{ color: "red" }}><br />{error["password"]}</span>
 
                     <label htmlFor="confirmPassword" className="FormFields label">Confirm Password</label>
-                    <input type="password" id="confirmPassword" className="FormFields" placeholder="Confirm Password" name="confirm" value={confirm} onChange={this.handleChange} />
+                    <input type="password" id="confirmPassword" className="FormFields" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={this.handleChange} />
                     <span style={{ color: "red" }}><br />{error["confirmPassword"]}</span>
                     <button className="FormFields submit" onClick={this.register}>Register</button>
                 </div>
@@ -134,6 +150,8 @@ class Register extends Component {
 const mapStateToProps = (state) => {
     return {
         loading: state.register.loading,
+        success: state.register.success,
+        error: state.register.error
     }
 }
 

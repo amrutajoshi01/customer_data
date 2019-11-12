@@ -27,9 +27,10 @@ export const uploadSuccess = () => {
     }
 }
 
-export const uploadFailure = () => {
+export const uploadFailure = (error) => {
     return {
         type: UPLOAD_FAILURE,
+        error
     }
 }
 

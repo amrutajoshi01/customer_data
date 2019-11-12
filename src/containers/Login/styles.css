@@ -32,3 +32,8 @@ h3.error {
     margin-top: 10px;
     position: relative;
 }
+
+.loader{
+    display: inline-block;
+    vertical-align: middle;
+}

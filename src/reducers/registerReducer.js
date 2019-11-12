@@ -5,6 +5,7 @@ const initState = {
     name: '',
     email: '',
     password: '',
+    success: false,
     error: ''
 }
 
@@ -24,12 +25,15 @@ const registerReducer = (state = initState, action) => {
                 name: data.name,
                 email: data.email,
                 password: data.password,
+                success: true,
                 loading: false
             }
 
         case REGISTER_FAILURE: return {
             ...state,
-            error: action.error
+            error: action.error,
+            success: false,
+            loading: false
         }
 
         default: return state;

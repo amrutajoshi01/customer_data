@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { loginRequest } from "../../actions/loginActions";
+import Loader from '../../components/Loader';
 
 import './styles.css';
 class Login extends Component {
@@ -19,7 +20,6 @@ class Login extends Component {
     }
 
     handleSubmit = (evt) => {
-        console.log('submit')
         evt.preventDefault();
         let { email, password } = this.state;
         evt.preventDefault();
@@ -57,8 +57,11 @@ class Login extends Component {
 
     render() {
         let { email, password, error, message } = this.state;
+        const { loading } = this.props;
         return (
+
             <div className="loginForm">
+                {loading && <Loader />}
                 <h2>Login</h2>
                 {
                     <h3 className='error' onClick={this.dismissError}>
@@ -72,7 +75,10 @@ class Login extends Component {
                 <label className="FormFields label">Password</label>
                 <input type="password" className="FormFields" name="password" value={password}
                     onChange={(event) => this.handleChange(event)} /><br />
-                <input type="submit" className="FormFields submit" value="Login" onClick={this.handleSubmit} />
+                <button type="submit" className="FormFields submit" value="Login" onClick={this.handleSubmit}>
+                    Login
+                </button>
+
             </div>
         );
     }

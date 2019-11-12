@@ -24,8 +24,9 @@ export const registerSuccess = (data) => {
     }
 }
 
-export const registerFailure = () => {
+export const registerFailure = (error) => {
     return {
         type: REGISTER_FAILURE,
+        error
     }
 }

@@ -6,6 +6,7 @@ import {
 const initState = {
     loading: false,
     customers: [],
+    success: false,
     error: ''
 }
 
@@ -49,8 +50,8 @@ const customerReducer = (state = initState, action) => {
 
         case GET_CUSTOMERS_FAILURE: return {
             ...state,
-            error: action.error,
-            loading: false
+            loading: false,
+            error: action.error
         }
 
 

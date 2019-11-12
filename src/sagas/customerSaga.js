@@ -23,7 +23,7 @@ export function* upload(action) {
         yield put({ type: UPLOAD_SUCCESS })
     }
     catch (error) {
-        yield put({ type: UPLOAD_FAILURE, error })
+        yield put({ type: UPLOAD_FAILURE, error:'Something went wrong...' })
     }
 }
 
@@ -48,7 +48,7 @@ export function* getCustomers() {
             yield put({ type: GET_CUSTOMERS_SUCCESS, customers })
     }
     catch (error) {
-        yield put({ type: GET_CUSTOMERS_FAILURE, error })
+        yield put({ type: GET_CUSTOMERS_FAILURE, error:'Something went wrong...' })
     }
 }
 

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { getCustomersRequest } from '../../actions/customerActions';
 import './styles.css'
+import Loader from '../../components/Loader';
 class Customers extends Component {
 
     componentDidMount = () => {
@@ -10,9 +11,12 @@ class Customers extends Component {
     }
 
     render() {
-        let { customers } = this.props;
-        return (
-            <div id="customersData">
+        let { customers, loading } = this.props;
+        let displayContent;
+        if (loading)
+            displayContent = <Loader />
+        else
+            displayContent = <div id="customersData">
                 <div className="customer">
                     <p className="customerDetails">Customer Id</p>
                     <p className="customerDetails">Name</p>
@@ -28,12 +32,14 @@ class Customers extends Component {
                     ))
                 }
             </div>
-        );
+        return (displayContent);
     }
 }
 const mapStateToProps = (state) => {
     return {
-        customers: state.customer.customers
+        customers: state.customer.customers,
+        loading: state.customer.loading,
+        error: state.customer.error
     }
 }
 const mapDispatchToProps = (dispatch) => {
