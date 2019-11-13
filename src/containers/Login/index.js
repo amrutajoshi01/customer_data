@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { loginRequest } from "../../actions/loginActions";
 import Loader from '../../components/Loader';
-
+import Alert from '../../components/Alert';
 import './styles.css';
 class Login extends Component {
     constructor(props) {
@@ -12,9 +12,13 @@ class Login extends Component {
             email: '',
             password: '',
             error: '',
-            message: ''
+            message: '',
+            showAlert: true
         };
     }
+
+    closeAlert = () => this.setState({ showAlert: false });
+
     dismissError = () => {
         this.setState({ error: '' });
     }
@@ -56,17 +60,18 @@ class Login extends Component {
     }
 
     render() {
-        let { email, password, error, message } = this.state;
+        let { email, password, error, message, showAlert } = this.state;
         const { loading } = this.props;
         return (
 
             <div className="loginForm">
                 {loading && <Loader />}
+                {showAlert && message && <Alert text={message} type="error" closeAlert={this.closeAlert} />}
                 <h2>Login</h2>
                 {
                     <h3 className='error' onClick={this.dismissError}>
                         {error && <button onClick={this.dismissError}>✖</button>}
-                        {error}{message}
+                        {error}
                     </h3>
                 }
                 <label className="FormFields label">Email</label>

@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { registerRequest } from "../../actions/registerActions";
 import { withRouter } from 'react-router-dom';
 import Loader from '../../components/Loader';
-
-import "./styles.css"
 import Alert from '../../components/Alert';
+import "./styles.css"
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -14,9 +14,12 @@ class Register extends Component {
             email: '',
             password: '',
             confirmPassword: '',
-            error: {}
+            error: {},
+            showAlert: true
         }
     }
+
+    closeAlert = () => this.setState({ showAlert: false });
 
     handleChange = (event) => {
         let name = event.target.name;
@@ -92,11 +95,12 @@ class Register extends Component {
     }
 
     register = (event) => {
+        if (!this.props.loading)
+            this.setState({ showAlert: true });
         event.preventDefault();
-        let { name, email, password } = this.state;
+        let { email, password } = this.state;
         if (this.handleValidation()) {
             const data = {
-                // name: name,
                 email: email,
                 password: password
             }
@@ -110,18 +114,18 @@ class Register extends Component {
                 nextProps.history.push('/login');
             }
             else {
-                return { message: nextProps.error, }
+                return { message: nextProps.error }
             }
         }
         return null;
     }
 
     render() {
-        let { name, email, password, confirmPassword, error } = this.state;
+        let { name, email, password, confirmPassword, error, showAlert } = this.state;
         const { loading } = this.props;
         return (
             <div >
-                {this.props.error && <Alert />}
+                {showAlert && this.props.error && <Alert text={this.props.error} type="error" closeAlert={this.closeAlert} />}
                 {loading && <Loader />}
                 <h2>Register</h2>
                 <div id="register">

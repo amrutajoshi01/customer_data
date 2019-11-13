@@ -24,12 +24,15 @@ const customerReducer = (state = initState, action) => {
 
         case UPLOAD_SUCCESS: return {
             ...state,
-            loading: false
+            loading: false,
+            success: true,
         }
 
         case UPLOAD_FAILURE: return {
             ...state,
-            loading: false
+            loading: false,
+            success: false,
+            error: action.error
         }
 
         case GET_CUSTOMERS_REQUEST: return {
@@ -44,13 +47,15 @@ const customerReducer = (state = initState, action) => {
 
         case GET_CUSTOMERS_SUCCESS: return {
             ...state,
-            customers: action.customers,
-            loading: false
+            loading: false,
+            success: true,
+            customers: action.customers
         }
 
         case GET_CUSTOMERS_FAILURE: return {
             ...state,
             loading: false,
+            success: false,
             error: action.error
         }
 

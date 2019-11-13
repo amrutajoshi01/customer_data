@@ -5,7 +5,6 @@ import { REGISTER_REQUEST, REGISTER_PENDING, REGISTER_SUCCESS, REGISTER_FAILURE 
 
 export function* register(action) {
     const { data } = action.payload;
-    console.log(JSON.stringify(data));
     let url = 'http://35.223.127.220:8080/register'
 
     yield put({ type: REGISTER_PENDING })
@@ -29,7 +28,6 @@ export function* register(action) {
     }
 
 }
-
 export function* watchRegister() {
     yield takeEvery(REGISTER_REQUEST, register)
 }

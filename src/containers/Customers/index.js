@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { getCustomersRequest } from '../../actions/customerActions';
-import './styles.css'
 import Loader from '../../components/Loader';
+import './styles.css';
 class Customers extends Component {
 
     componentDidMount = () => {

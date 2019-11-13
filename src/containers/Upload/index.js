@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { uploadRequest } from "../../actions/customerActions";
+import Loader from '../../components/Loader';
+import Alert from '../../components/Alert';
 import './styles.css'
 class Upload extends Component {
     constructor(props) {
@@ -8,9 +10,12 @@ class Upload extends Component {
         this.state = {
             name: '',
             email: '',
-            toggleUploadTab: 'EnterDetails'
+            toggleUploadTab: 'EnterDetails',
+            showAlert: true
         }
     }
+
+    closeAlert = () => this.setState({ showAlert: false });
 
     handleChange = (event) => {
         let name = event.target.name;
@@ -29,6 +34,8 @@ class Upload extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        if (!this.props.loading)
+            this.setState({ showAlert: true });
         let target = event.target;
         if (target.id === "file") {
             let file = event.target.file.files;
@@ -44,7 +51,8 @@ class Upload extends Component {
     }
 
     render() {
-        let { name, email, toggleUploadTab } = this.state;
+        let { name, email, toggleUploadTab, showAlert } = this.state;
+        const { loading, error } = this.props;
         let displayForm;
         if (toggleUploadTab === "EnterDetails")
             displayForm = <form id="data" className="uploadCustomersForm" onSubmit={this.handleSubmit}>
@@ -62,6 +70,8 @@ class Upload extends Component {
 
         return (
             <div className="upload">
+                {showAlert && error && <Alert text={error} type="error" closeAlert={this.closeAlert} />}
+                {loading && <Loader />}
                 <h2>Customer Details</h2>
                 <button name="EnterDetails" className="uploadMenu" onClick={(event) => this.toggleMenu(event)}>Enter Details</button>
                 <button name="UploadDetails" className="uploadMenu" onClick={(event) => this.toggleMenu(event)}>Upload Details</button>
@@ -73,7 +83,9 @@ class Upload extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        customers: state.customer.customers,
         loading: state.customer.loading,
+        error: state.customer.error
     }
 }
 

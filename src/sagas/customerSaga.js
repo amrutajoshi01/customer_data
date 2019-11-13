@@ -20,10 +20,14 @@ export function* upload(action) {
             }
         });
         const result = yield response.json();
-        yield put({ type: UPLOAD_SUCCESS })
+        if (response.ok)
+            yield put({ type: UPLOAD_SUCCESS })
+        else
+            yield put({ type: UPLOAD_FAILURE, error: 'Something went wrong...' })
+
     }
     catch (error) {
-        yield put({ type: UPLOAD_FAILURE, error:'Something went wrong...' })
+        yield put({ type: UPLOAD_FAILURE, error: 'Something went wrong...' })
     }
 }
 
@@ -44,11 +48,11 @@ export function* getCustomers() {
                 }
             });
         let customers = yield response.json();
-        if (response.status === 200)
+        if (response.ok)
             yield put({ type: GET_CUSTOMERS_SUCCESS, customers })
     }
     catch (error) {
-        yield put({ type: GET_CUSTOMERS_FAILURE, error:'Something went wrong...' })
+        yield put({ type: GET_CUSTOMERS_FAILURE, error: 'Something went wrong...' })
     }
 }
 

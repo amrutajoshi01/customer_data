@@ -1,9 +1,23 @@
 .alert {
     padding: 20px;
-    background-color: #f44336;
-    color: white;
     width: 300px;
     margin: auto;
+    display: block;
+}
+
+#error {
+    background-color: #f44336;
+    color: white;
+}
+
+#success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#info {
+    background-color: gray;
+    color: white;
 }
 
 .closebtn {
